@@ -2,7 +2,7 @@
 
 ## Overview
 
-`mls` is a command-line tool designed to list and manage files with enhanced features such as colorized output, file type icons, and sorting options. It is cross-platform and supports both Unix and Windows systems.
+`mls` is a command-line tool like `ls`, designed to list and manage files with enhanced features such as colorized output, file type icons, and sorting options. It is cross-platform and supports both Unix and Windows systems.
 
 ## Features
 
