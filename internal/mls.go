@@ -211,3 +211,33 @@ func printFilesInColumns(writer io.Writer, files []models.File, noColor, noLink,
 
 	_, _ = fmt.Fprint(writer, sb.String())
 }
+
+func printAsTree(writer io.Writer, files []models.File, indent string, maxDepth int, depth int, showAll, noColor, noIcon bool) {
+	if len(files) == 0 {
+		return
+	}
+
+	if maxDepth >= 0 && depth > maxDepth {
+		return
+	}
+
+	for i, f := range files {
+		connector := "├──"
+		if i == len(files)-1 {
+			connector = "└──"
+		}
+		_, _ = fmt.Fprintf(writer, "%s%s %s\n", indent, connector, f.Colorize(noColor, false, noIcon))
+		if f.IsDir() {
+			childIndent := indent + "    "
+			if i != len(files)-1 {
+				childIndent = indent + "│   "
+			}
+			childrenFiles, err := getFiles(f.Path, showAll)
+			if err != nil {
+				_, _ = fmt.Fprintln(os.Stderr, err)
+				continue
+			}
+			printAsTree(writer, childrenFiles, childIndent, maxDepth, depth+1, showAll, noColor, noIcon)
+		}
+	}
+}
