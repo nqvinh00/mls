@@ -202,8 +202,12 @@ func printFilesInColumns(writer io.Writer, files []models.File, noColor, noLink,
 			fileIndex := i + j*rows
 			if fileIndex < len(files) {
 				name := files[fileIndex].Colorize(noColor, noLink, noIcon)
+				width := columnWidth
+				if strings.ContainsRune(name, ';') {
+					width += 2
+				}
 				_, _ = sb.WriteString(name)
-				_, _ = sb.WriteString(strings.Repeat(" ", columnWidth-utf8.RuneCountInString(name)))
+				_, _ = sb.WriteString(strings.Repeat(" ", width-utf8.RuneCountInString(name)))
 			}
 		}
 		_ = sb.WriteByte('\n')
