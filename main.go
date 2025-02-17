@@ -20,6 +20,7 @@ var (
 	noColor    bool
 	noIcon     bool
 	noLink     bool
+	depth      int
 	sort       string
 )
 
@@ -32,6 +33,7 @@ func parseArgs() {
 	pflag.BoolVarP(&noIcon, "no-icon", "I", false, "Disable icon output")
 	pflag.BoolVarP(&noLink, "no-link", "L", false, "Disable link output")
 	pflag.StringVarP(&sort, "sort", "s", "s", "Sort files by extenstion (x), type (t), size (s), or date (d)")
+	pflag.IntVarP(&depth, "depth", "d", -1, "Maximum depth of the tree")
 
 	help := pflag.BoolP("help", "h", false, "Show help")
 
@@ -61,7 +63,7 @@ func main() {
 	}
 
 	if showAsTree {
-
+		internal.Tree(writer, paths, depth, showAll, noColor, noIcon)
 	} else {
 		internal.Ls(writer, paths, sort, showList, showAll, noColor, noLink, noIcon)
 	}
