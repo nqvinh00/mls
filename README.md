@@ -13,6 +13,8 @@
 - Option to display files as a list or in columns.
 - Link resolution for symlinked files.
 
+![features](./static/features.png)
+
 ## Installation
 
 To install `mls`, clone the repository and build the binary using Go:
