@@ -48,4 +48,5 @@ mls [options] [path...]
 - `-C, --no-color`: Disable color output.
 - `-I, --no-icon`: Disable icon output.
 - `-L, --no-link`: Disable link resolution for symlinks.
+- `-d, --max-depth`: Maximum depth of the tree
 
