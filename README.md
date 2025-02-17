@@ -49,6 +49,3 @@ mls [options] [path...]
 - `-I, --no-icon`: Disable icon output.
 - `-L, --no-link`: Disable link resolution for symlinks.
 
-## Contributing
-
-Contributions are welcome! Please fork the repository and create a pull request with your improvements.
